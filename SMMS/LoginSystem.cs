@@ -32,7 +32,7 @@ namespace SMMS
 
         private void LoginSystem_Load(object sender, EventArgs e)
         {
-            MainForm._Instance.Hide();
+            MainForm._instance.Hide();
         }
 
         private void LoginBtn_Click(object sender, EventArgs e)
@@ -43,7 +43,7 @@ namespace SMMS
             if (Login(userId, userPwd))
             {
                 this.Hide();
-                MainForm._Instance.Show();
+                MainForm._instance.Show();
             }
             else
             {
@@ -55,23 +55,23 @@ namespace SMMS
         private bool Login(string userId, string pwd)
         {
             string sql = "select * from staffs where SID = '" + userId + "'";
-            if (MainForm._Instance.oleDb.State != ConnectionState.Open)
+            if (MainForm._instance.oleDb.State != ConnectionState.Open)
             {
-                MainForm._Instance.oleDb.Open();
+                MainForm._instance.oleDb.Open();
             }
-            OleDbDataAdapter dbDataAdapter = new OleDbDataAdapter(sql, MainForm._Instance.oleDb); //创建适配对象
+            OleDbDataAdapter dbDataAdapter = new OleDbDataAdapter(sql, MainForm._instance.oleDb); //创建适配对象
             DataSet ds = new DataSet();
             dbDataAdapter.Fill(ds, "staffs");
             Console.WriteLine(ds.Tables[0].Rows[0]["SPwd"]);
             if (ds.Tables[0].Rows[0]["SPwd"].ToString() == pwd)
             {
-                MainForm._Instance.oleDb.Close();
+                MainForm._instance.oleDb.Close();
                 MessageBox.Show("success login");
                 return true;
             }
             else
             {
-                MainForm._Instance.oleDb.Close();
+                MainForm._instance.oleDb.Close();
                 MessageBox.Show("failed to login");
                 return false;
             }
@@ -84,12 +84,12 @@ namespace SMMS
 
         private void LoginSystem_Shown(object sender, EventArgs e)
         {
-            MainForm._Instance.Hide();
+            MainForm._instance.Hide();
         }
 
         private void LoginSystem_FormClosed(object sender, FormClosedEventArgs e)
         {
-            MainForm._Instance.Close();
+            MainForm._instance.Close();
         }
     }
 

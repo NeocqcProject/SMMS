@@ -26,11 +26,11 @@ namespace SMMS
         public void UpdateDBView()
         {
             string sql = "select * from staffs";
-            if(MainForm._Instance.oleDb.State!=ConnectionState.Open)
+            if(MainForm._instance.oleDb.State!=ConnectionState.Open)
             {
-                MainForm._Instance.oleDb.Open();
+                MainForm._instance.oleDb.Open();
             }
-            OleDbDataAdapter dbDataAdapter = new OleDbDataAdapter(sql, MainForm._Instance.oleDb); //创建适配对象
+            OleDbDataAdapter dbDataAdapter = new OleDbDataAdapter(sql, MainForm._instance.oleDb); //创建适配对象
             DataSet ds = new DataSet();
             dbDataAdapter.Fill(ds, "staffs");
             dataGridView1.DataSource = ds;
@@ -39,7 +39,7 @@ namespace SMMS
             dataGridView1.Columns[0].HeaderText = "工号";
             dataGridView1.Columns[1].HeaderText = "姓名";
            
-            MainForm._Instance.oleDb.Close();
+            MainForm._instance.oleDb.Close();
             GetSNos();
         }
 
@@ -90,7 +90,7 @@ namespace SMMS
             if(result == DialogResult.Yes)
             {
                 string sql = "delete from staffs where SNo='" + currentSelectedSNo + "';";
-                MainForm._Instance.RunASql(sql);
+                MainForm._instance.RunASql(sql);
                 StaffsView._instance.UpdateDBView();
             }
         }
@@ -101,9 +101,6 @@ namespace SMMS
             staffUpdate.Show();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+        
     }
 }

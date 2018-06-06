@@ -14,12 +14,12 @@ namespace SMMS
 {
     public partial class MainForm : Form
     {
-        public static MainForm _Instance;
+        public static MainForm _instance;
 
         public MainForm()
         {
             InitializeComponent();
-            _Instance = this;
+            _instance = this;
         }
 
         //public SalesView salesView;
@@ -101,7 +101,6 @@ namespace SMMS
         private void windowsGroup_Paint(object sender, PaintEventArgs e)
         {
             //e.Graphics.Clear(this.BackColor);
-            ;
         }
 
         private void windowsGroup_Enter(object sender, EventArgs e)

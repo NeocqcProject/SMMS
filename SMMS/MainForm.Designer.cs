@@ -40,8 +40,8 @@
             // 
             // StaffsBtn
             // 
-            this.StaffsBtn.Location = new System.Drawing.Point(5, 92);
-            this.StaffsBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.StaffsBtn.Location = new System.Drawing.Point(8, 80);
+            this.StaffsBtn.Margin = new System.Windows.Forms.Padding(4);
             this.StaffsBtn.Name = "StaffsBtn";
             this.StaffsBtn.Size = new System.Drawing.Size(165, 59);
             this.StaffsBtn.TabIndex = 0;
@@ -51,8 +51,8 @@
             // 
             // SystemBtn
             // 
-            this.SystemBtn.Location = new System.Drawing.Point(5, 25);
-            this.SystemBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SystemBtn.Location = new System.Drawing.Point(7, 13);
+            this.SystemBtn.Margin = new System.Windows.Forms.Padding(4);
             this.SystemBtn.Name = "SystemBtn";
             this.SystemBtn.Size = new System.Drawing.Size(165, 59);
             this.SystemBtn.TabIndex = 1;
@@ -62,8 +62,8 @@
             // 
             // VipBtn
             // 
-            this.VipBtn.Location = new System.Drawing.Point(5, 159);
-            this.VipBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.VipBtn.Location = new System.Drawing.Point(8, 147);
+            this.VipBtn.Margin = new System.Windows.Forms.Padding(4);
             this.VipBtn.Name = "VipBtn";
             this.VipBtn.Size = new System.Drawing.Size(165, 59);
             this.VipBtn.TabIndex = 2;
@@ -73,8 +73,8 @@
             // 
             // StockBtn
             // 
-            this.StockBtn.Location = new System.Drawing.Point(5, 226);
-            this.StockBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.StockBtn.Location = new System.Drawing.Point(8, 214);
+            this.StockBtn.Margin = new System.Windows.Forms.Padding(4);
             this.StockBtn.Name = "StockBtn";
             this.StockBtn.Size = new System.Drawing.Size(165, 59);
             this.StockBtn.TabIndex = 3;
@@ -84,8 +84,8 @@
             // 
             // SalesBtn
             // 
-            this.SalesBtn.Location = new System.Drawing.Point(5, 293);
-            this.SalesBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SalesBtn.Location = new System.Drawing.Point(8, 281);
+            this.SalesBtn.Margin = new System.Windows.Forms.Padding(4);
             this.SalesBtn.Name = "SalesBtn";
             this.SalesBtn.Size = new System.Drawing.Size(165, 59);
             this.SalesBtn.TabIndex = 4;
@@ -100,9 +100,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.windowsGroup.AutoSize = true;
             this.windowsGroup.Location = new System.Drawing.Point(187, 0);
-            this.windowsGroup.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.windowsGroup.Margin = new System.Windows.Forms.Padding(4);
             this.windowsGroup.Name = "windowsGroup";
-            this.windowsGroup.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.windowsGroup.Padding = new System.Windows.Forms.Padding(4);
             this.windowsGroup.Size = new System.Drawing.Size(1045, 714);
             this.windowsGroup.TabIndex = 5;
             this.windowsGroup.TabStop = false;
@@ -130,7 +130,7 @@
             this.ClientSize = new System.Drawing.Size(1245, 743);
             this.Controls.Add(this.buttonBox);
             this.Controls.Add(this.windowsGroup);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.Text = "xx超市管理系统";
             this.Load += new System.EventHandler(this.MainForm_Load);

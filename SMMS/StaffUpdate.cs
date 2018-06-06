@@ -13,23 +13,23 @@ namespace SMMS
 {
     public partial class StaffUpdate : Form
     {
-        private string currentSelectedSNo;
-        private StaffUpdate su;
+        private string currentSelectedSID;
+        public static StaffUpdate _instance;
         private bool isAdd;
 
         public StaffUpdate()
         {//新增
             InitializeComponent();
-            currentSelectedSNo = null;
-            su = this;
+            currentSelectedSID = null;
             isAdd = true;
+            _instance = this;
         }
 
         public StaffUpdate(string SNo)
         {//修改
             InitializeComponent();
-            currentSelectedSNo = SNo;
-            su = this;
+            currentSelectedSID = SNo;
+            _instance = this;
             isAdd = false;
         }
 
@@ -37,26 +37,27 @@ namespace SMMS
         {
             if(isAdd)
             {
-                su.Text = "新增员工信息(一次只能添加一条)";
+                _instance.Text = "新增员工信息(一次只能添加一条)";
                 dataGridView1.AllowUserToAddRows = true;
             }
             else
             {
-                su.Text = "修改员工信息";
+                _instance.Text = "修改员工信息";
                 dataGridView1.AllowUserToAddRows = false;
             }
-
-            string sql = "select * from staffs where SNo='" + currentSelectedSNo + "'";
-            if (MainForm._Instance.oleDb.State != ConnectionState.Open)
+            MessageBox.Show(currentSelectedSID);
+            string sql = "select * from staffs where SID='" + currentSelectedSID + "'";
+            if (MainForm._instance.oleDb.State != ConnectionState.Open)
             {
-                MainForm._Instance.oleDb.Open();
+                MainForm._instance.oleDb.Open();
             }
-            OleDbDataAdapter dbDataAdapter = new OleDbDataAdapter(sql, MainForm._Instance.oleDb); //创建适配对象
+            OleDbDataAdapter dbDataAdapter = new OleDbDataAdapter(sql, MainForm._instance.oleDb); //创建适配对象
             DataSet ds = new DataSet();
-            dbDataAdapter.Fill(ds, "staffs");
-            dataGridView1.DataSource = ds;
-            dataGridView1.DataMember = "staffs";
-            MainForm._Instance.oleDb.Close();
+            dbDataAdapter.Fill(ds,"staffs");
+            this.dataGridView1.DataSource = ds;
+            this.dataGridView1.DataMember = "staffs";
+
+            MainForm._instance.oleDb.Close();
         }
 
         private void ConfirmBtn_Click(object sender, EventArgs e)
@@ -91,7 +92,7 @@ namespace SMMS
                 foreach (DataGridViewCell dgvc in dataGridView1.Rows[0].Cells)
                 {
 
-                    if (dataGridView1.Columns[dgvc.ColumnIndex].Name.ToString() == "Administrator")
+                    if (dataGridView1.Columns[dgvc.ColumnIndex].Name.ToString().ToArray<char>()[0] == 'R')
                     {//Administrator 不加引号
                         if(dgvc.Value.ToString()!="True")
                         {
@@ -125,8 +126,8 @@ namespace SMMS
                     }
                     else
                     {
-                        if (dataGridView1.Columns[dgvc.ColumnIndex].Name.ToString() == "Administrator")
-                        {//Administrator 不加引号
+                        if (dataGridView1.Columns[dgvc.ColumnIndex].Name.ToString().ToArray<char>()[0] == 'R')
+                        {//权限 不加引号
                             sql += dataGridView1.Columns[dgvc.ColumnIndex].Name.ToString() +
                             " = " + dgvc.Value.ToString() + " ";
                         }
@@ -143,19 +144,19 @@ namespace SMMS
                         else { }
                     }
                 }
-                sql += " where SNo = '" + dataGridView1.Rows[0].Cells[0].Value.ToString() + "'";
+                sql += " where SID = '" + dataGridView1.Rows[0].Cells[0].Value.ToString() + "'";
             }
                 //MessageBox.Show(sql);
 
 
-            MainForm._Instance.RunASql(sql);
+            MainForm._instance.RunASql(sql);
             StaffsView._instance.UpdateDBView();
-            su.Dispose();
+            StaffUpdate._instance.Close();
         }
 
         private void CancelBtn_Click(object sender, EventArgs e)
         {
-            su.Dispose();
+            StaffUpdate._instance.Close();
         }
     }
 }
