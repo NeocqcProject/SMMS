@@ -32,15 +32,22 @@ namespace SMMS
 
         public OleDbConnection oleDb;
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {  
-            //windows
+        private void InitializeForm()
+        {
             new SalesView();
             new StaffsView();
             new StockView();
             new SystemView();
             new VipView();
             new LoginSystem();
+            new GetMoneyView();
+            new RecordsView();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            //windows
+            InitializeForm();
             mainBox = this.windowsGroup;
 
             //DataBase

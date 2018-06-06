@@ -60,7 +60,6 @@ namespace SMMS
             UpdateDBView();
 
             //this.Size = MainForm._Instance.mainBox.Size;
-            
             //this.Anchor = AnchorStyles.Top;
         }
 
