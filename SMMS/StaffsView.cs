@@ -57,11 +57,12 @@ namespace SMMS
 
         private void StaffsView_Load(object sender, EventArgs e)
         {
+            this.Dock = DockStyle.Fill;
+
             dataGridView1.ClearSelection();
             UpdateDBView();
 
             //this.Size = MainForm._Instance.mainBox.Size;
-            this.Dock = DockStyle.Fill;
             //this.Anchor = AnchorStyles.Top;
         }
 
