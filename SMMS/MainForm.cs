@@ -100,7 +100,8 @@ namespace SMMS
 
         private void windowsGroup_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.Clear(this.BackColor);
+            //e.Graphics.Clear(this.BackColor);
+            ;
         }
 
         private void windowsGroup_Enter(object sender, EventArgs e)
