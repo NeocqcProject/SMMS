@@ -14,6 +14,7 @@ namespace SMMS
     public partial class SearchGoods : Form
     {
         public static SearchGoods _instance;
+        public string currentSelectedID;
         public SearchGoods()
         {
             InitializeComponent();
@@ -43,11 +44,7 @@ namespace SMMS
                 {
                     MessageBox.Show("请输入商品编号");
                 }
-
                 SearchGoodsByID(textBox1.Text);
-
-
-
 
             }
             else if(comboBox1.SelectedIndex == 1)
@@ -58,15 +55,8 @@ namespace SMMS
                 }
                 SearchGoodsByName(textBox1.Text);
 
-
-
-
             }
-
-            
-
             //GetMoneyView._instance.GoodsGridView.Rows.Add();
-
         }
 
         private void SearchGoodsByID(string token)
@@ -109,6 +99,18 @@ namespace SMMS
             //GetSNos();
         }
 
+        private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Left && e.ColumnIndex > -1 && e.RowIndex > -1)  //点击的是鼠标右键，并且不是表头
+            {
+                //右键选中单元格
+                this.dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Selected = true;
+                currentSelectedID = this.dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+                //MessageBox.Show(currentSelectedID);
 
+                SearchGoods._instance.Hide();
+                GetMoneyView._instance.AddGood();
+            }
+        }
     }
 }

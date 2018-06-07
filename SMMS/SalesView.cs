@@ -22,6 +22,7 @@ namespace SMMS
         private void SalesView_Load(object sender, EventArgs e)
         {
             this.Dock = DockStyle.Fill;
+            button1_Click(null, null);
         }
 
         private void button1_Click(object sender, EventArgs e)
