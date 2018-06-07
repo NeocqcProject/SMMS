@@ -56,7 +56,7 @@ namespace SMMS
                 {
                     MessageBox.Show("请输入商品名称");
                 }
-
+                SearchGoodsByName(textBox1.Text);
 
 
 
@@ -89,6 +89,25 @@ namespace SMMS
             //GetSNos();
         }
 
+        private void SearchGoodsByName(string token)
+        {
+            string sql = "select * from goods_stock where GName like '%" + token + "%'";
+            if (MainForm._instance.oleDb.State != ConnectionState.Open)
+            {
+                MainForm._instance.oleDb.Open();
+            }
+            OleDbDataAdapter dbDataAdapter = new OleDbDataAdapter(sql, MainForm._instance.oleDb); //创建适配对象
+            DataSet ds = new DataSet();
+            dbDataAdapter.Fill(ds, "goods_stock");
+            dataGridView1.DataSource = ds;
+            dataGridView1.DataMember = "goods_stock";
+
+            dataGridView1.Columns[0].HeaderText = "商品编号";
+            dataGridView1.Columns[1].HeaderText = "商品名称";
+
+            MainForm._instance.oleDb.Close();
+            //GetSNos();
+        }
 
 
     }
