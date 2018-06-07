@@ -23,5 +23,10 @@ namespace SMMS
         {
             this.Dock = DockStyle.Fill;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SearchGoods._instance.Show();
+        }
     }
 }

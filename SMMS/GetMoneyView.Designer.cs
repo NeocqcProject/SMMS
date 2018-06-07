@@ -43,10 +43,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 90);
+            this.dataGridView1.Location = new System.Drawing.Point(3, 72);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 27;
-            this.dataGridView1.Size = new System.Drawing.Size(776, 491);
+            this.dataGridView1.Size = new System.Drawing.Size(776, 509);
             this.dataGridView1.TabIndex = 0;
             // 
             // label1
@@ -54,7 +54,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("SimSun", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(480, 31);
+            this.label1.Location = new System.Drawing.Point(476, 7);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(95, 38);
             this.label1.TabIndex = 1;
@@ -65,7 +65,7 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("SimSun", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(711, 31);
+            this.label2.Location = new System.Drawing.Point(710, 7);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 38);
             this.label2.TabIndex = 2;
@@ -73,19 +73,20 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(15, 18);
+            this.button1.Location = new System.Drawing.Point(0, 0);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(96, 66);
+            this.button1.Size = new System.Drawing.Size(124, 66);
             this.button1.TabIndex = 3;
             this.button1.Text = "添加";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(247, 18);
+            this.button2.Location = new System.Drawing.Point(232, 0);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(98, 66);
+            this.button2.Size = new System.Drawing.Size(113, 66);
             this.button2.TabIndex = 4;
             this.button2.Text = "清空";
             this.button2.UseVisualStyleBackColor = true;
@@ -93,9 +94,9 @@
             // button3
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(351, 18);
+            this.button3.Location = new System.Drawing.Point(351, 0);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(98, 66);
+            this.button3.Size = new System.Drawing.Size(105, 66);
             this.button3.TabIndex = 5;
             this.button3.Text = "打印小票";
             this.button3.UseVisualStyleBackColor = true;

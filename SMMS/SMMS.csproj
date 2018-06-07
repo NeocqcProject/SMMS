@@ -76,6 +76,12 @@
     <Compile Include="SalesView.Designer.cs">
       <DependentUpon>SalesView.cs</DependentUpon>
     </Compile>
+    <Compile Include="SearchGoods.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchGoods.Designer.cs">
+      <DependentUpon>SearchGoods.cs</DependentUpon>
+    </Compile>
     <Compile Include="SMDBDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -134,6 +140,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SalesView.resx">
       <DependentUpon>SalesView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchGoods.resx">
+      <DependentUpon>SearchGoods.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StaffsView.resx">
       <DependentUpon>StaffsView.cs</DependentUpon>

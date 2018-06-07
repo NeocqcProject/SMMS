@@ -42,6 +42,7 @@ namespace SMMS
             new LoginSystem();
             new GetMoneyView();
             new RecordsView();
+            new SearchGoods();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
