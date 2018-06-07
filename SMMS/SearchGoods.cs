@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.OleDb;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -37,16 +38,58 @@ namespace SMMS
         private void SearhBtn_Click(object sender, EventArgs e)
         {
             if(comboBox1.SelectedIndex==0)
-            {
-                MessageBox.Show(comboBox1.SelectedIndex.ToString());
+            {//编号
+                if (textBox1.Text == "")
+                {
+                    MessageBox.Show("请输入商品编号");
+                }
+
+                SearchGoodsByID(textBox1.Text);
+
+
+
+
             }
             else if(comboBox1.SelectedIndex == 1)
-            {
-                MessageBox.Show(comboBox1.SelectedIndex.ToString());
+            {//名字
+                if (textBox1.Text == "")
+                {
+                    MessageBox.Show("请输入商品名称");
+                }
+
+
+
+
+
             }
+
+            
 
             //GetMoneyView._instance.GoodsGridView.Rows.Add();
 
         }
+
+        private void SearchGoodsByID(string token)
+        {
+            string sql = "select * from goods_stock where GID = '"+ token + "'";
+            if (MainForm._instance.oleDb.State != ConnectionState.Open)
+            {
+                MainForm._instance.oleDb.Open();
+            }
+            OleDbDataAdapter dbDataAdapter = new OleDbDataAdapter(sql, MainForm._instance.oleDb); //创建适配对象
+            DataSet ds = new DataSet();
+            dbDataAdapter.Fill(ds, "goods_stock");
+            dataGridView1.DataSource = ds;
+            dataGridView1.DataMember = "goods_stock";
+
+            dataGridView1.Columns[0].HeaderText = "商品编号";
+            dataGridView1.Columns[1].HeaderText = "商品名称";
+
+            MainForm._instance.oleDb.Close();
+            //GetSNos();
+        }
+
+
+
     }
 }

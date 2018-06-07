@@ -23,19 +23,19 @@ namespace SMMS
 
         public void UpdateDBView()
         {
-            string sql = "select * from goods";
+            string sql = "select * from goods_stock";
             if (MainForm._instance.oleDb.State != ConnectionState.Open)
             {
                 MainForm._instance.oleDb.Open();
             }
             OleDbDataAdapter dbDataAdapter = new OleDbDataAdapter(sql, MainForm._instance.oleDb); //创建适配对象
             DataSet ds = new DataSet();
-            dbDataAdapter.Fill(ds, "goods");
+            dbDataAdapter.Fill(ds, "goods_stock");
             dataGridView1.DataSource = ds;
-            dataGridView1.DataMember = "goods";
+            dataGridView1.DataMember = "goods_stock";
 
-            dataGridView1.Columns[0].HeaderText = "序号";
-            dataGridView1.Columns[1].HeaderText = "商品名";
+            dataGridView1.Columns[0].HeaderText = "商品编号";
+            dataGridView1.Columns[1].HeaderText = "商品名称";
 
             MainForm._instance.oleDb.Close();
             GetSNos();

@@ -34,5 +34,10 @@ namespace SMMS
         {
             SearchGoods._instance.Show();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -102,6 +102,9 @@ namespace SMMS
             staffUpdate.Show();
         }
 
-        
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
