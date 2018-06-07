@@ -21,9 +21,9 @@ namespace SMMS
             _instance = this;
         }
 
-        private string userId;
-        private string userName;
-        private string userPwd;
+        private string currentUserId;
+        private string currentUserName;
+        private string currentUserPwd;
         private bool RStaff;
         private bool RVIP;
         private bool RStock;
@@ -37,10 +37,10 @@ namespace SMMS
 
         private void LoginBtn_Click(object sender, EventArgs e)
         {
-            userId = textBoxAccount.Text;
-            userPwd = textBoxPwd.Text;
+            currentUserId = textBoxAccount.Text;
+            currentUserPwd = textBoxPwd.Text;
 
-            if (Login(userId, userPwd))
+            if (Login(currentUserId, currentUserPwd))
             {
                 this.Hide();
                 MainForm._instance.Show();
@@ -67,6 +67,21 @@ namespace SMMS
             {
                 MainForm._instance.oleDb.Close();
                 MessageBox.Show("success login");
+
+                currentUserId = ds.Tables[0].Rows[0]["SID"].ToString();
+                currentUserName = ds.Tables[0].Rows[0]["SName"].ToString();
+                if(ds.Tables[0].Rows[0]["RStaff"].ToString()=="true") {RStaff = true;}
+                else {RStaff = false;}
+
+                if (ds.Tables[0].Rows[0]["RVIP"].ToString() == "true") {RVIP = true;}
+                else {RVIP = false;}
+
+                if (ds.Tables[0].Rows[0]["RStock"].ToString() == "true") {RStock = true;}
+                else {RStock = false;}
+
+                if (ds.Tables[0].Rows[0]["RSales"].ToString() == "true") {RSales = true;}
+                else {RSales = false;}
+
                 return true;
             }
             else

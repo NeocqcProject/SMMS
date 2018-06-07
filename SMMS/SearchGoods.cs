@@ -44,6 +44,9 @@ namespace SMMS
             {
                 MessageBox.Show(comboBox1.SelectedIndex.ToString());
             }
+
+            //GetMoneyView._instance.GoodsGridView.Rows.Add();
+
         }
     }
 }
