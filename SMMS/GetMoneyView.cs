@@ -15,7 +15,7 @@ namespace SMMS
     {
         public static GetMoneyView _instance;
         public DataGridView GoodsGridView;
-        public string makeID;
+        public string markID;
         public GetMoneyView()
         {
             InitializeComponent();
@@ -58,10 +58,24 @@ namespace SMMS
                 }
             }
 
-            makeID = (max+1).ToString();
-            MessageBox.Show(makeID);
+            markID = (max+1).ToString();
+            MessageBox.Show(markID);
 
             MainForm._instance.oleDb.Close();
+        }
+
+        private void UpdateGoodsList()
+        {
+            string sql = "select * from sales where markID='" + markID + "'";
+            if (MainForm._instance.oleDb.State != ConnectionState.Open)
+            {
+                MainForm._instance.oleDb.Open();
+            }
+            OleDbDataAdapter dbDataAdapter = new OleDbDataAdapter(sql, MainForm._instance.oleDb); //创建适配对象
+            DataSet ds = new DataSet();
+            dbDataAdapter.Fill(ds, "sales");
+            dataGridView1.DataSource = ds;
+            dataGridView1.DataMember = "sales";
         }
 
         public void AddGood()
@@ -71,8 +85,41 @@ namespace SMMS
                 GetNewMakeID();
             }
 
-            //todo显示新加的商品，可以修改数目
+            UpdateGoodsList();
 
+            //int index = dataGridView1.Rows.Add();
+            //dataGridView1.Rows[index].Cells[0]
+
+            //todo显示新加的商品，可以修改数目，06/11：不实现修改数目，模拟扫码
+
+
+            //生成sql
+            /*string sql = "insert into staffs values (";
+
+            foreach (DataGridViewCell dgvc in dataGridView1.Rows[0].Cells)
+            {
+
+                if (dataGridView1.Columns[dgvc.ColumnIndex].Name.ToString().ToArray<char>()[0] == 'R')
+                {//Administrator 不加引号
+                    if (dgvc.Value.ToString() != "True")
+                    {
+                        dgvc.Value = false;
+                    }
+                    sql += " " + dgvc.Value.ToString() + " ";
+                }
+                else
+                {
+                    sql += " '" + dgvc.Value.ToString() + "' ";
+                }
+
+                if (dgvc.ColumnIndex < dataGridView1.Columns.Count - 1)
+                {
+                    sql += ",";
+                }
+                else { }
+            }
+            sql += ")";
+            */
         }
     }
 }
