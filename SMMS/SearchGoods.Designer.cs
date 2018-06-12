@@ -84,6 +84,7 @@
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.groupBox1_Paint);
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // SearchResult
             // 

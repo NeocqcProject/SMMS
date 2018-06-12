@@ -24,6 +24,24 @@ namespace SMMS
         private void SearchGoods_Load(object sender, EventArgs e)
         {
             comboBox1.SelectedIndex = 0;
+
+            ShowAllGoods();
+        }
+
+        private void ShowAllGoods()
+        {
+            string sql = "select * from goods_stock";
+            if (MainForm._instance.oleDb.State != ConnectionState.Open)
+            {
+                MainForm._instance.oleDb.Open();
+            }
+            OleDbDataAdapter dbDataAdapter = new OleDbDataAdapter(sql, MainForm._instance.oleDb); //创建适配对象
+            DataSet ds = new DataSet();
+            dbDataAdapter.Fill(ds, "goods_stock");
+            dataGridView1.DataSource = ds;
+            dataGridView1.DataMember = "goods_stock";
+
+            MainForm._instance.oleDb.Close();
         }
 
         private void groupBox1_Paint(object sender, PaintEventArgs e)
@@ -113,6 +131,11 @@ namespace SMMS
                     this.dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(), //name
                     this.dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString());//价格
             }
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

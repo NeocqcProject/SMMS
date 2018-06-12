@@ -16,27 +16,26 @@ namespace SMMS
         public static GetMoneyView _instance;
         public DataGridView GoodsGridView;
         public string markID;
+        private List<string> goodsList;
+        private int sum;
         public GetMoneyView()
         {
             InitializeComponent();
             _instance = this;
             GoodsGridView = dataGridView1;
+            sum = 0;
+            goodsList = new List<string>();
         }
         
 
         private void GetMoneyView_Load(object sender, EventArgs e)
         {
-            this.Dock = DockStyle.Fill;
+            this.Dock = DockStyle.Fill;         
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             SearchGoods._instance.Show();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void GetNewMakeID()
@@ -57,11 +56,10 @@ namespace SMMS
                     max = Int32.Parse(ds.Tables[0].Rows[i][1].ToString());
                 }
             }
-
             markID = (max+1).ToString();
-            MessageBox.Show(markID);
-
             MainForm._instance.oleDb.Close();
+
+            goodsList = new List<string>();
         }
 
         private void UpdateGoodsList()
@@ -86,47 +84,39 @@ namespace SMMS
                 GetNewMakeID();
             }
 
-            string sql = "insert into sales (markID,GID,GName,SNumbers,SumPrice,SalerID) values ";
-            sql += "(" + markID + "," + GID +",'"+ GName + "',1," + price + ",'" + LoginSystem._instance.currentUserId + "')";
-
-            MainForm._instance.RunASql(sql);
-            UpdateGoodsList();
-
-
-            //int index = dataGridView1.Rows.Add();
-            //dataGridView1.Rows[index].Cells[1].Value = markID;
-
-
-            //todo显示新加的商品，可以修改数目，06/11：不实现修改数目，模拟扫码
-
-
-            //生成sql
-            /*string sql = "insert into staffs values (";
-
-            foreach (DataGridViewCell dgvc in dataGridView1.Rows[0].Cells)
+            if (goodsList.Exists(delegate (string s) { return s == GID; }))
             {
-
-                if (dataGridView1.Columns[dgvc.ColumnIndex].Name.ToString().ToArray<char>()[0] == 'R')
-                {//Administrator 不加引号
-                    if (dgvc.Value.ToString() != "True")
-                    {
-                        dgvc.Value = false;
-                    }
-                    sql += " " + dgvc.Value.ToString() + " ";
-                }
-                else
-                {
-                    sql += " '" + dgvc.Value.ToString() + "' ";
-                }
-
-                if (dgvc.ColumnIndex < dataGridView1.Columns.Count - 1)
-                {
-                    sql += ",";
-                }
-                else { }
+                string sql = "update sales set  SumPrice = (SumPrice/SNumbers)*(SNumbers+1),SNumbers= SNumbers+1 where GID='" + GID+ "' and markID='"+markID+"'";
+                MainForm._instance.RunASql(sql);
             }
-            sql += ")";
-            */
+            else
+            {
+                string sql = "insert into sales (markID,GID,GName,SNumbers,SumPrice,SalerID) values ";
+                sql += "(" + markID + "," + GID + ",'" + GName + "',1," + price + ",'" + LoginSystem._instance.currentUserId + "')";
+                MainForm._instance.RunASql(sql);
+                goodsList.Add(GID);
+            }
+
+            UpdateGoodsList();
+            sum = 0;
+            for (int i = 0; i<dataGridView1.RowCount;i++)
+            {
+                sum += Int32.Parse(dataGridView1.Rows[i].Cells[5].Value.ToString());
+            }
+            label2.Text = sum.ToString();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            GetNewMakeID();
+            UpdateGoodsList();
+            label2.Text = "0";
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            button2_Click(null,null);
+        }
+
     }
 }
