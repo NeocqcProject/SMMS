@@ -21,13 +21,13 @@ namespace SMMS
             _instance = this;
         }
 
-        private string currentUserId;
-        private string currentUserName;
-        private string currentUserPwd;
-        private bool RStaff;
-        private bool RVIP;
-        private bool RStock;
-        private bool RSales;
+        public string currentUserId;
+        public string currentUserName;
+        public string currentUserPwd;
+        public bool RStaff;
+        public bool RVIP;
+        public bool RStock;
+        public bool RSales;
 
 
         private void LoginSystem_Load(object sender, EventArgs e)

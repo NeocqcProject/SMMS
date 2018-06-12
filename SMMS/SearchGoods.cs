@@ -109,7 +109,9 @@ namespace SMMS
                 //MessageBox.Show(currentSelectedID);
 
                 SearchGoods._instance.Hide();
-                GetMoneyView._instance.AddGood();
+                GetMoneyView._instance.AddGood(currentSelectedID,
+                    this.dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(), //name
+                    this.dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString());//价格
             }
         }
     }

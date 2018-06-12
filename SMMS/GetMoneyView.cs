@@ -78,17 +78,24 @@ namespace SMMS
             dataGridView1.DataMember = "sales";
         }
 
-        public void AddGood()
+
+        public void AddGood(string GID,string GName,string price)
         {//依据序号查找商品，生成详单
             if (dataGridView1.Rows.Count == 0)
             {
                 GetNewMakeID();
             }
 
+            string sql = "insert into sales (markID,GID,GName,SNumbers,SumPrice,SalerID) values ";
+            sql += "(" + markID + "," + GID +",'"+ GName + "',1," + price + ",'" + LoginSystem._instance.currentUserId + "')";
+
+            MainForm._instance.RunASql(sql);
             UpdateGoodsList();
 
+
             //int index = dataGridView1.Rows.Add();
-            //dataGridView1.Rows[index].Cells[0]
+            //dataGridView1.Rows[index].Cells[1].Value = markID;
+
 
             //todo显示新加的商品，可以修改数目，06/11：不实现修改数目，模拟扫码
 
