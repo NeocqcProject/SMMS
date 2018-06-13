@@ -36,6 +36,7 @@ namespace SMMS
         private void button1_Click(object sender, EventArgs e)
         {
             SearchGoods._instance.Show();
+            SearchGoods._instance.ShowAllGoods();
         }
 
         private void GetNewMakeID()
@@ -107,24 +108,34 @@ namespace SMMS
         }
 
         private void button2_Click(object sender, EventArgs e)
-        {
+        {//清空
             string sql;
             for (int i = 0; i < dataGridView1.RowCount; i++)
             {
                 sql= "delete * from sales where SID="+dataGridView1.Rows[i].Cells[0].Value.ToString();
                 MainForm._instance.RunASql(sql);
-            }  
+            }
 
-            button3_Click(null, null);
+            NewList();
         }
 
         private void button3_Click(object sender, EventArgs e)
+        {//结算，减少货物中的数量
+            string sql;
+            for (int i = 0; i < dataGridView1.RowCount; i++)
+            {
+                sql = "update goods_stock set Numbers=Numbers-"+  dataGridView1.Rows[i].Cells[4].Value.ToString() + " where GID='" + dataGridView1.Rows[i].Cells[2].Value.ToString()+"'";
+                MainForm._instance.RunASql(sql);
+            }
+
+            NewList();
+        }
+
+        private void NewList()
         {
-            
             GetNewMakeID();
             UpdateGoodsList();
             label2.Text = "0";
         }
-
     }
 }

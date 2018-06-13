@@ -75,7 +75,6 @@ namespace SMMS
                 currentSelectedSNo = this.dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
                 //MessageBox.Show(currentSelectedSNo);
                 this.staffsMenuStrip.Show(MousePosition.X, MousePosition.Y); //MousePosition.X, MousePosition.Y 是为了让菜单在所选行的位置显示
-
             }
         }
 

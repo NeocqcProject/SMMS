@@ -28,7 +28,7 @@ namespace SMMS
             ShowAllGoods();
         }
 
-        private void ShowAllGoods()
+        public void ShowAllGoods()
         {
             string sql = "select * from goods_stock";
             if (MainForm._instance.oleDb.State != ConnectionState.Open)
@@ -56,7 +56,7 @@ namespace SMMS
 
         private void SearhBtn_Click(object sender, EventArgs e)
         {
-            if(comboBox1.SelectedIndex==0)
+            if (comboBox1.SelectedIndex == 0)
             {//编号
                 if (textBox1.Text == "")
                 {
@@ -65,7 +65,7 @@ namespace SMMS
                 SearchGoodsByID(textBox1.Text);
 
             }
-            else if(comboBox1.SelectedIndex == 1)
+            else if (comboBox1.SelectedIndex == 1)
             {//名字
                 if (textBox1.Text == "")
                 {
@@ -79,7 +79,7 @@ namespace SMMS
 
         private void SearchGoodsByID(string token)
         {
-            string sql = "select * from goods_stock where GID = '"+ token + "'";
+            string sql = "select * from goods_stock where GID = '" + token + "'";
             if (MainForm._instance.oleDb.State != ConnectionState.Open)
             {
                 MainForm._instance.oleDb.Open();
@@ -137,5 +137,6 @@ namespace SMMS
         {
 
         }
+
     }
 }
