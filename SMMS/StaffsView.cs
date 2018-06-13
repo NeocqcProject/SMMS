@@ -87,12 +87,13 @@ namespace SMMS
         private void DelBtn_Click(object sender, EventArgs e)
         {
             var result = MessageBox.Show("是否要删除工号为" + currentSelectedSNo + "的记录","删除员工信息",MessageBoxButtons.OKCancel);
-            if(result == DialogResult.Yes)
+            if(result == DialogResult.OK)
             {
-                string sql = "delete from staffs where SNo='" + currentSelectedSNo + "';";
+                string sql = "delete from staffs where SID='" + currentSelectedSNo + "'";
                 MainForm._instance.RunASql(sql);
                 StaffsView._instance.UpdateDBView();
             }
+            //MessageBox.Show(result.ToString());
         }
 
         private void AddBtn_Click(object sender, EventArgs e)

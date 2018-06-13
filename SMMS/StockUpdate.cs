@@ -11,68 +11,67 @@ using System.Windows.Forms;
 
 namespace SMMS
 {
-    public partial class StaffUpdate : Form
+    public partial class StockUpdate : Form
     {
-        private string currentSelectedSID;
-        public static StaffUpdate _instance;
+        private string currentSelectedGID;
+        public static StockUpdate _instance;
         private bool isAdd;
 
-        public StaffUpdate()
+        public StockUpdate()
         {//新增
             InitializeComponent();
-            currentSelectedSID = null;
+            currentSelectedGID = null;
             isAdd = true;
             _instance = this;
         }
 
-        public StaffUpdate(string SNo)
+        public StockUpdate(string SNo)
         {//修改
             InitializeComponent();
-            currentSelectedSID = SNo;
+            currentSelectedGID = SNo;
             _instance = this;
             isAdd = false;
         }
 
-        private void StaffUpdate_Load(object sender, EventArgs e)
+        private void StockUpdate_Load(object sender, EventArgs e)
         {
-            if(isAdd)
+            if (isAdd)
             {
-                _instance.Text = "新增员工信息(一次只能添加一条)";
+                _instance.Text = "新增库存信息(一次只能添加一条)";
                 dataGridView1.AllowUserToAddRows = true;
-                
             }
             else
             {
-                _instance.Text = "修改员工信息";
+                _instance.Text = "修改库存信息";
                 dataGridView1.AllowUserToAddRows = false;
             }
-            //MessageBox.Show(currentSelectedSID);
-            string sql = "select * from staffs where SID='" + currentSelectedSID + "'";
+            //MessageBox.Show(currentSelectedGID);
+            string sql = "select * from goods_stock where GID='" + currentSelectedGID + "'";
             if (MainForm._instance.oleDb.State != ConnectionState.Open)
             {
                 MainForm._instance.oleDb.Open();
             }
             OleDbDataAdapter dbDataAdapter = new OleDbDataAdapter(sql, MainForm._instance.oleDb); //创建适配对象
             DataSet ds = new DataSet();
-            dbDataAdapter.Fill(ds,"staffs");
+            dbDataAdapter.Fill(ds, "goods_stock");
             this.dataGridView1.DataSource = ds;
-            this.dataGridView1.DataMember = "staffs";
+            this.dataGridView1.DataMember = "goods_stock";
 
             MainForm._instance.oleDb.Close();
         }
 
         private void ConfirmBtn_Click(object sender, EventArgs e)
         {
-            if(dataGridView1.Rows[0].Cells[0].Value ==null)
+            if (dataGridView1.Rows[0].Cells[0].Value == null)
             {
                 MessageBox.Show("必填信息不能为空");
                 return;
             }
 
-            if(dataGridView1.Rows.Count>2)
+            if (dataGridView1.Rows.Count > 2)
             {
                 MessageBox.Show("一次只允许新增一条");
-                StaffUpdate_Load(null, null);
+                StockUpdate_Load(null, null);
                 return;
             }
 
@@ -80,22 +79,22 @@ namespace SMMS
 
             if (isAdd)
             {
-                foreach(var no in StaffsView._instance.GetSNos())
+                foreach (var no in StockView._instance.GetSNos())
                 {
                     if (no == dataGridView1.Rows[0].Cells[0].Value.ToString())
                     {
-                        MessageBox.Show("该工号已存在！");
+                        MessageBox.Show("该货号存在！");
                         return;
                     }
                 }
-                sql = "insert into staffs values (";
+                sql = "insert into goods_stock values (";
 
                 foreach (DataGridViewCell dgvc in dataGridView1.Rows[0].Cells)
                 {
 
                     if (dataGridView1.Columns[dgvc.ColumnIndex].Name.ToString().ToArray<char>()[0] == 'R')
                     {//Administrator 不加引号
-                        if(dgvc.Value.ToString()!="True")
+                        if (dgvc.Value.ToString() != "True")
                         {
                             dgvc.Value = false;
                         }
@@ -116,7 +115,7 @@ namespace SMMS
             }
             else
             {
-                sql = "update staffs set ";
+                sql = "update goods_stock set ";
 
                 foreach (DataGridViewCell dgvc in dataGridView1.Rows[0].Cells)
                 {
@@ -127,15 +126,15 @@ namespace SMMS
                     }
                     else
                     {
-                        if (dataGridView1.Columns[dgvc.ColumnIndex].Name.ToString().ToArray<char>()[0] == 'R')
-                        {//权限 不加引号
+                        if (dataGridView1.Columns[dgvc.ColumnIndex].Name.ToString() == "GName")
+                        {//文本加引号
                             sql += dataGridView1.Columns[dgvc.ColumnIndex].Name.ToString() +
-                            " = " + dgvc.Value.ToString() + " ";
+                            " = '" + dgvc.Value.ToString() + "' ";
                         }
                         else
                         {
                             sql += dataGridView1.Columns[dgvc.ColumnIndex].Name.ToString() +
-                            " = '" + dgvc.Value.ToString() + "' ";
+                            " = " + dgvc.Value.ToString() + " ";
                         }
 
                         if (dgvc.ColumnIndex < dataGridView1.Columns.Count - 1)
@@ -145,19 +144,19 @@ namespace SMMS
                         else { }
                     }
                 }
-                sql += " where SID = '" + dataGridView1.Rows[0].Cells[0].Value.ToString() + "'";
+                sql += " where GID = '" + dataGridView1.Rows[0].Cells[0].Value.ToString()+"'";
             }
-                //MessageBox.Show(sql);
+            //MessageBox.Show(sql);
 
 
             MainForm._instance.RunASql(sql);
-            StaffsView._instance.UpdateDBView();
-            StaffUpdate._instance.Close();
+            StockView._instance.UpdateDBView();
+            StockUpdate._instance.Close();
         }
 
         private void CancelBtn_Click(object sender, EventArgs e)
         {
-            StaffUpdate._instance.Close();
+            StockUpdate._instance.Close();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

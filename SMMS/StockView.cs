@@ -63,6 +63,44 @@ namespace SMMS
             //this.Anchor = AnchorStyles.Top;
         }
 
+        private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Right && e.ColumnIndex > -1 && e.RowIndex > -1)  //点击的是鼠标右键，并且不是表头
+            {
+                //右键选中单元格
+                this.dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Selected = true;
+                currentSelectedSNo = this.dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+                //MessageBox.Show(currentSelectedSNo);
+                this.stockMenuStrip.Show(MousePosition.X, MousePosition.Y); //MousePosition.X, MousePosition.Y 是为了让菜单在所选行的位置显示
+            }
+        }
 
+        private void UpdateBtn_Click(object sender, EventArgs e)
+        {
+            StockUpdate stockUpdate = new StockUpdate(currentSelectedSNo);
+            stockUpdate.Show();
+        }
+
+        private void DelBtn_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show("是否要删除货号为" + currentSelectedSNo + "的记录", "删除员工信息", MessageBoxButtons.OKCancel);
+            if (result == DialogResult.OK)
+            {
+                string sql = "delete from goods_stock where GID='" + currentSelectedSNo + "';";
+                MainForm._instance.RunASql(sql);
+                StockView._instance.UpdateDBView();
+            }
+        }
+
+        private void AddBtn_Click(object sender, EventArgs e)
+        {
+            StockUpdate stockUpdate = new StockUpdate();
+            stockUpdate.Show();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
