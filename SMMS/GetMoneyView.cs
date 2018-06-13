@@ -108,14 +108,22 @@ namespace SMMS
 
         private void button2_Click(object sender, EventArgs e)
         {
-            GetNewMakeID();
-            UpdateGoodsList();
-            label2.Text = "0";
+            string sql;
+            for (int i = 0; i < dataGridView1.RowCount; i++)
+            {
+                sql= "delete * from sales where SID="+dataGridView1.Rows[i].Cells[0].Value.ToString();
+                MainForm._instance.RunASql(sql);
+            }  
+
+            button3_Click(null, null);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            button2_Click(null,null);
+            
+            GetNewMakeID();
+            UpdateGoodsList();
+            label2.Text = "0";
         }
 
     }
