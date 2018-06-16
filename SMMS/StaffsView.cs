@@ -21,7 +21,7 @@ namespace SMMS
             _instance = this;
         }
 
-        public string currentSelectedSNo;
+        public string currentSelectedID;
 
         public void UpdateDBView()
         {
@@ -72,7 +72,7 @@ namespace SMMS
             {
                 //右键选中单元格
                 this.dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Selected = true;
-                currentSelectedSNo = this.dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+                currentSelectedID = this.dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
                 //MessageBox.Show(currentSelectedSNo);
                 this.staffsMenuStrip.Show(MousePosition.X, MousePosition.Y); //MousePosition.X, MousePosition.Y 是为了让菜单在所选行的位置显示
             }
@@ -80,16 +80,16 @@ namespace SMMS
 
         private void UpdateBtn_Click(object sender, EventArgs e)
         {
-            StaffUpdate staffUpdate = new StaffUpdate(currentSelectedSNo);
+            StaffUpdate staffUpdate = new StaffUpdate(currentSelectedID);
             staffUpdate.Show();
         }
 
         private void DelBtn_Click(object sender, EventArgs e)
         {
-            var result = MessageBox.Show("是否要删除工号为" + currentSelectedSNo + "的记录","删除员工信息",MessageBoxButtons.OKCancel);
+            var result = MessageBox.Show("是否要删除工号为" + currentSelectedID + "的记录","删除员工信息",MessageBoxButtons.OKCancel);
             if(result == DialogResult.OK)
             {
-                string sql = "delete from staffs where SID='" + currentSelectedSNo + "'";
+                string sql = "delete from staffs where SID='" + currentSelectedID + "'";
                 MainForm._instance.RunASql(sql);
                 StaffsView._instance.UpdateDBView();
             }

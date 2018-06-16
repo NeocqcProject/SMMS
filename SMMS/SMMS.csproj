@@ -117,6 +117,12 @@
     <Compile Include="SystemView.Designer.cs">
       <DependentUpon>SystemView.cs</DependentUpon>
     </Compile>
+    <Compile Include="VipUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VipUpdate.Designer.cs">
+      <DependentUpon>VipUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="VipView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -164,6 +170,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SystemView.resx">
       <DependentUpon>SystemView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VipUpdate.resx">
+      <DependentUpon>VipUpdate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VipView.resx">
       <DependentUpon>VipView.cs</DependentUpon>

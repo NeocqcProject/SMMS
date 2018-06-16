@@ -13,14 +13,14 @@ namespace SMMS
 {
     public partial class StaffUpdate : Form
     {
-        private string currentSelectedSID;
+        private string currentSelectedID;
         public static StaffUpdate _instance;
         private bool isAdd;
 
         public StaffUpdate()
         {//新增
             InitializeComponent();
-            currentSelectedSID = null;
+            currentSelectedID = null;
             isAdd = true;
             _instance = this;
         }
@@ -28,7 +28,7 @@ namespace SMMS
         public StaffUpdate(string SNo)
         {//修改
             InitializeComponent();
-            currentSelectedSID = SNo;
+            currentSelectedID = SNo;
             _instance = this;
             isAdd = false;
         }
@@ -47,7 +47,7 @@ namespace SMMS
                 dataGridView1.AllowUserToAddRows = false;
             }
             //MessageBox.Show(currentSelectedSID);
-            string sql = "select * from staffs where SID='" + currentSelectedSID + "'";
+            string sql = "select * from staffs where SID='" + currentSelectedID + "'";
             if (MainForm._instance.oleDb.State != ConnectionState.Open)
             {
                 MainForm._instance.oleDb.Open();

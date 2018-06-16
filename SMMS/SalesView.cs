@@ -48,5 +48,10 @@ namespace SMMS
         {
             //e.Graphics.Clear(this.BackColor);
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

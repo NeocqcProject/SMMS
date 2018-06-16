@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.StaffsBtn = new System.Windows.Forms.Button();
-            this.SystemBtn = new System.Windows.Forms.Button();
             this.VipBtn = new System.Windows.Forms.Button();
             this.StockBtn = new System.Windows.Forms.Button();
             this.SalesBtn = new System.Windows.Forms.Button();
@@ -40,7 +39,7 @@
             // 
             // StaffsBtn
             // 
-            this.StaffsBtn.Location = new System.Drawing.Point(8, 80);
+            this.StaffsBtn.Location = new System.Drawing.Point(8, 13);
             this.StaffsBtn.Margin = new System.Windows.Forms.Padding(4);
             this.StaffsBtn.Name = "StaffsBtn";
             this.StaffsBtn.Size = new System.Drawing.Size(165, 59);
@@ -49,20 +48,9 @@
             this.StaffsBtn.UseVisualStyleBackColor = true;
             this.StaffsBtn.Click += new System.EventHandler(this.StaffsBtn_Click);
             // 
-            // SystemBtn
-            // 
-            this.SystemBtn.Location = new System.Drawing.Point(7, 13);
-            this.SystemBtn.Margin = new System.Windows.Forms.Padding(4);
-            this.SystemBtn.Name = "SystemBtn";
-            this.SystemBtn.Size = new System.Drawing.Size(165, 59);
-            this.SystemBtn.TabIndex = 1;
-            this.SystemBtn.Text = "系统管理";
-            this.SystemBtn.UseVisualStyleBackColor = true;
-            this.SystemBtn.Click += new System.EventHandler(this.SystemBtn_Click);
-            // 
             // VipBtn
             // 
-            this.VipBtn.Location = new System.Drawing.Point(8, 147);
+            this.VipBtn.Location = new System.Drawing.Point(8, 80);
             this.VipBtn.Margin = new System.Windows.Forms.Padding(4);
             this.VipBtn.Name = "VipBtn";
             this.VipBtn.Size = new System.Drawing.Size(165, 59);
@@ -73,7 +61,7 @@
             // 
             // StockBtn
             // 
-            this.StockBtn.Location = new System.Drawing.Point(8, 214);
+            this.StockBtn.Location = new System.Drawing.Point(8, 147);
             this.StockBtn.Margin = new System.Windows.Forms.Padding(4);
             this.StockBtn.Name = "StockBtn";
             this.StockBtn.Size = new System.Drawing.Size(165, 59);
@@ -84,7 +72,7 @@
             // 
             // SalesBtn
             // 
-            this.SalesBtn.Location = new System.Drawing.Point(8, 281);
+            this.SalesBtn.Location = new System.Drawing.Point(8, 214);
             this.SalesBtn.Margin = new System.Windows.Forms.Padding(4);
             this.SalesBtn.Name = "SalesBtn";
             this.SalesBtn.Size = new System.Drawing.Size(165, 59);
@@ -111,7 +99,6 @@
             // 
             // buttonBox
             // 
-            this.buttonBox.Controls.Add(this.SystemBtn);
             this.buttonBox.Controls.Add(this.SalesBtn);
             this.buttonBox.Controls.Add(this.StaffsBtn);
             this.buttonBox.Controls.Add(this.StockBtn);
@@ -143,7 +130,6 @@
         #endregion
 
         private System.Windows.Forms.Button StaffsBtn;
-        private System.Windows.Forms.Button SystemBtn;
         private System.Windows.Forms.Button VipBtn;
         private System.Windows.Forms.Button StockBtn;
         private System.Windows.Forms.Button SalesBtn;

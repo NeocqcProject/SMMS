@@ -154,14 +154,14 @@ namespace SMMS
             StockUpdate._instance.Close();
         }
 
-        private void CancelBtn_Click(object sender, EventArgs e)
-        {
-            StockUpdate._instance.Close();
-        }
-
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void CancelBtn_Click_1(object sender, EventArgs e)
+        {
+            StockUpdate._instance.Close();
         }
     }
 }

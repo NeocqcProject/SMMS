@@ -88,8 +88,8 @@ namespace SMMS
         private void VipBtn_Click(object sender, EventArgs e)
         {
             windowsGroup.Controls.Clear();
-            windowsGroup.Controls.Add(VipView._Instance);
-            VipView._Instance.Show();
+            windowsGroup.Controls.Add(VipView._instance);
+            VipView._instance.Show();
         }
 
         private void StockBtn_Click(object sender, EventArgs e)
