@@ -73,6 +73,11 @@ namespace SMMS
 
         private void StaffsBtn_Click(object sender, EventArgs e)
         {
+            if(LoginSystem._instance.RStaff==false)
+            {
+                MessageBox.Show("当前用户没有访问权限");
+                return;
+            }
 
             windowsGroup.Controls.Clear();
             windowsGroup.Controls.Add(StaffsView._instance);
@@ -89,6 +94,11 @@ namespace SMMS
 
         private void VipBtn_Click(object sender, EventArgs e)
         {
+            if (LoginSystem._instance.RVIP == false)
+            {
+                MessageBox.Show("当前用户没有访问权限");
+                return;
+            }
             windowsGroup.Controls.Clear();
             windowsGroup.Controls.Add(VipView._instance);
             VipView._instance.Show();
@@ -97,6 +107,11 @@ namespace SMMS
 
         private void StockBtn_Click(object sender, EventArgs e)
         {
+            if (LoginSystem._instance.RStock == false)
+            {
+                MessageBox.Show("当前用户没有访问权限");
+                return;
+            }
             windowsGroup.Controls.Clear();
             windowsGroup.Controls.Add(StockView._instance);
             StockView._instance.Show();
@@ -105,6 +120,11 @@ namespace SMMS
 
         private void SalesBtn_Click(object sender, EventArgs e)
         {
+            if (LoginSystem._instance.RSales == false)
+            {
+                MessageBox.Show("当前用户没有访问权限");
+                return;
+            }
             windowsGroup.Controls.Clear();
             windowsGroup.Controls.Add(SalesView._instance);
             SalesView._instance.Show();

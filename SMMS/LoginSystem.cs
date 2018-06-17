@@ -66,21 +66,22 @@ namespace SMMS
             if (ds.Tables[0].Rows[0]["SPwd"].ToString() == pwd)
             {
                 MainForm._instance.oleDb.Close();
-                MessageBox.Show("success login");
 
                 currentUserId = ds.Tables[0].Rows[0]["SID"].ToString();
                 currentUserName = ds.Tables[0].Rows[0]["SName"].ToString();
-                if(ds.Tables[0].Rows[0]["RStaff"].ToString()=="true") {RStaff = true;}
+
+                if(ds.Tables[0].Rows[0]["RStaff"].ToString()=="True") {RStaff = true;}
                 else {RStaff = false;}
 
-                if (ds.Tables[0].Rows[0]["RVIP"].ToString() == "true") {RVIP = true;}
+                if (ds.Tables[0].Rows[0]["RVIP"].ToString() == "True") {RVIP = true;}
                 else {RVIP = false;}
 
-                if (ds.Tables[0].Rows[0]["RStock"].ToString() == "true") {RStock = true;}
+                if (ds.Tables[0].Rows[0]["RStock"].ToString() == "True") {RStock = true;}
                 else {RStock = false;}
 
-                if (ds.Tables[0].Rows[0]["RSales"].ToString() == "true") {RSales = true;}
+                if (ds.Tables[0].Rows[0]["RSales"].ToString() == "True") {RSales = true;}
                 else {RSales = false;}
+                MessageBox.Show("welcome  " +currentUserName);
 
                 return true;
             }
