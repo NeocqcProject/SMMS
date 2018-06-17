@@ -16,6 +16,7 @@ namespace SMMS
         public static GetMoneyView _instance;
         public DataGridView GoodsGridView;
         public string markID;
+        public string VipID;
         private List<string> goodsList;
         private int sum;
         public GetMoneyView()
@@ -25,12 +26,14 @@ namespace SMMS
             GoodsGridView = dataGridView1;
             sum = 0;
             goodsList = new List<string>();
+            VipID = null;
         }
         
 
         private void GetMoneyView_Load(object sender, EventArgs e)
         {
-            this.Dock = DockStyle.Fill;         
+            this.Dock = DockStyle.Fill;
+            userText.Text = LoginSystem._instance.currentUserId +" " + LoginSystem._instance.currentUserName;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -95,6 +98,13 @@ namespace SMMS
                 string sql = "insert into sales (markID,GID,GName,SNumbers,SumPrice,SalerID) values ";
                 sql += "(" + markID + "," + GID + ",'" + GName + "',1," + price + ",'" + LoginSystem._instance.currentUserId + "')";
                 MainForm._instance.RunASql(sql);
+
+                if(VipID!=null)
+                {//已经有会员信息，直接更新
+                    sql = "update sales set VipID='" + VipID + "' where markID='" + markID + "'";
+                    MainForm._instance.RunASql(sql);
+                }
+
                 goodsList.Add(GID);
             }
 
@@ -120,11 +130,15 @@ namespace SMMS
         }
 
         private void button3_Click(object sender, EventArgs e)
-        {//结算，减少货物中的数量
+        {//结算
             string sql;
             for (int i = 0; i < dataGridView1.RowCount; i++)
             {
+                //更新货物数量
                 sql = "update goods_stock set Numbers=Numbers-"+  dataGridView1.Rows[i].Cells[4].Value.ToString() + " where GID='" + dataGridView1.Rows[i].Cells[2].Value.ToString()+"'";
+                MainForm._instance.RunASql(sql);
+                //更新积分
+                sql = "update vip set Point=Point+" + dataGridView1.Rows[i].Cells[5].Value.ToString() + " where ID=" + dataGridView1.Rows[i].Cells[7].Value.ToString() + "";
                 MainForm._instance.RunASql(sql);
             }
 
@@ -136,11 +150,34 @@ namespace SMMS
             GetNewMakeID();
             UpdateGoodsList();
             label2.Text = "0";
+            VipText.Text = "无";
+            VipID = null;
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            SearchVip._instance.Show();
+            SearchVip._instance.ShowAllVips();
+        }
+
+        public void SetVip(string ID,string VipName)
+        {
+            VipID = ID;
+            VipText.Text = VipID+"  "+VipName;
+            string sql;
+            for (int i = 0; i < dataGridView1.RowCount; i++)
+            {
+                sql = "update sales set VipID='" + VipID + "' where markID='" + dataGridView1.Rows[i].Cells[1].Value.ToString() + "'";
+                MainForm._instance.RunASql(sql);
+            }
+
+            UpdateGoodsList();
+        }
+
     }
 }

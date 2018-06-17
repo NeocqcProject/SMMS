@@ -43,6 +43,7 @@ namespace SMMS
             new GetMoneyView();
             new RecordsView();
             new SearchGoods();
+            new SearchVip();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -76,6 +77,7 @@ namespace SMMS
             windowsGroup.Controls.Clear();
             windowsGroup.Controls.Add(StaffsView._instance);
             StaffsView._instance.Show();
+            StaffsView._instance.UpdateDBView();
         }
 
         private void SystemBtn_Click(object sender, EventArgs e)
@@ -90,6 +92,7 @@ namespace SMMS
             windowsGroup.Controls.Clear();
             windowsGroup.Controls.Add(VipView._instance);
             VipView._instance.Show();
+            VipView._instance.UpdateDBView();
         }
 
         private void StockBtn_Click(object sender, EventArgs e)
@@ -97,6 +100,7 @@ namespace SMMS
             windowsGroup.Controls.Clear();
             windowsGroup.Controls.Add(StockView._instance);
             StockView._instance.Show();
+            StockView._instance.UpdateDBView();
         }
 
         private void SalesBtn_Click(object sender, EventArgs e)
