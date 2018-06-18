@@ -53,7 +53,7 @@ namespace SMMS
             mainBox = this.windowsGroup;
 
             //DataBase
-            oleDb = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=E:\桌面\安全驾驶\大三下\软件工程\大作业相关\SMDB.mdb");
+            oleDb = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=.\SMDB.mdb");
 
             LoginSystem._instance.Show();
         }
