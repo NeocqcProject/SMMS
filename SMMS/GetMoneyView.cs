@@ -138,8 +138,11 @@ namespace SMMS
                 sql = "update goods_stock set Numbers=Numbers-"+  dataGridView1.Rows[i].Cells[4].Value.ToString() + " where GID='" + dataGridView1.Rows[i].Cells[2].Value.ToString()+"'";
                 MainForm._instance.RunASql(sql);
                 //更新积分
-                sql = "update vip set Point=Point+" + dataGridView1.Rows[i].Cells[5].Value.ToString() + " where ID=" + dataGridView1.Rows[i].Cells[7].Value.ToString() + "";
-                MainForm._instance.RunASql(sql);
+                if (dataGridView1.Rows[i].Cells[7].Value.ToString() != "")
+                {
+                    sql = "update vip set Point=Point+" + dataGridView1.Rows[i].Cells[5].Value.ToString() + " where ID=" + dataGridView1.Rows[i].Cells[7].Value.ToString() + "";
+                    MainForm._instance.RunASql(sql);
+                }
             }
 
             NewList();
