@@ -37,6 +37,7 @@ namespace SMMS
 
         private void LoginBtn_Click(object sender, EventArgs e)
         {
+
             currentUserId = textBoxAccount.Text;
             currentUserPwd = textBoxPwd.Text;
 
